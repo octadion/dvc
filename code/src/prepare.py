@@ -38,7 +38,7 @@ def process_posts(input_lines, fd_out_train, fd_out_test, target_tag, split):
 
 
 def main():
-    params = yaml.safe_load(open("params.yaml"))["prepare"]
+    params = yaml.safe_load(open("C:/Master/dvc/dvcc/code/params.yaml"))["prepare"]
 
     if len(sys.argv) != 2:
         sys.stderr.write("Arguments error. Usage:\n")
@@ -56,7 +56,7 @@ def main():
     os.makedirs(os.path.join("data", "prepared"), exist_ok=True)
 
     input_lines = []
-    with open(input) as fd_in:
+    with open(input, 'r', encoding='utf-8') as fd_in:
         input_lines = fd_in.readlines()
 
     fd_out_train = open(output_train, "w", encoding="utf-8")
