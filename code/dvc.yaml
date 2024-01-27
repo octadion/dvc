@@ -1,28 +1,28 @@
 stages:
   prepare:
-    cmd: python code/src/prepare.py data/data.xml
+    cmd: python src/prepare.py dataset/data.xml
     deps:
-    - code/src/prepare.py
-    - data/data.xml
+    - src/prepare.py
+    - dataset/data.xml
     params:
     - prepare.seed
     - prepare.split
     outs:
     - data/prepared
   featurize:
-    cmd: python code/src/featurization.py dataset/prepared data/features
+    cmd: python src/featurization.py data/prepared data/features
     deps:
-    - code/src/featurization.py
-    - dataset/prepared
+    - src/featurization.py
+    - data/prepared
     params:
     - featurize.max_features
     - featurize.ngrams
     outs:
-    - dataset/features
+    - data/features
   train:
-    cmd: python code/src/train.py dataset/features model.pkl
+    cmd: python src/train.py dataset/features model.pkl
     deps:
-    - code/src/train.py
+    - src/train.py
     - dataset/features
     params:
     - train.min_split
